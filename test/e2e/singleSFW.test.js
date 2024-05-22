@@ -1,6 +1,7 @@
 const SFWUrls = [
-    'http://i.imgur.com/0WkpMWf.jpg',
-    'http://i.imgur.com/0X9OHoH.jpg',
+    'https://i.imghippo.com/files/AFVXO1716345018.jpg',
+    'https://i.imghippo.com/files/A4ybw1716345074.jpg',
+
 ]
 
 describe('Should not filter SFW images', () => {

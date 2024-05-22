@@ -1,6 +1,6 @@
 const NSFWUrls = [
-    'https://i.imgur.com/bY536ZM.jpeg',
-    'https://i.imgur.com/y9aPMnm.jpg'
+    'https://i.imghippo.com/files/5C44l1716344862.jpg',
+    'https://i.imghippo.com/files/3KtEY1716344936.jpg'
 ]
 
 describe('Should filter NSFW images', () => {
