@@ -26,20 +26,20 @@ export const Production: React.FC = () => {
   const { totalBlocked } = useSelector<RootState>((state) => state.statistics) as StatisticsState
 
   return (
-    <Container>
+    (<Container>
       <Stats>
         <span>Total blocked: {totalBlocked}</span>
       </Stats>
-
       <div>Filter strictness: {filterStrictness}%</div>
       <Slider
         min={1}
         max={100}
         onChange={(value: number) => dispatch(setFilterStrictness(value))}
         value={filterStrictness}
-        tipFormatter={null}
+        tooltip={{
+          formatter: null
+        }}
       />
-
       <DropdownRow>
         <span>Filter effect</span>
         <Select
@@ -52,7 +52,6 @@ export const Production: React.FC = () => {
           <Option value="grayscale">Grayscale</Option>
         </Select>
       </DropdownRow>
-
       <DropdownRow>
         <span>Trained model</span>
         <Select
@@ -63,7 +62,6 @@ export const Production: React.FC = () => {
           <Option value={trainedModel}>{trainedModel}</Option>
         </Select>
       </DropdownRow>
-
       <div>Whitelisted websites</div>
       <TextBox>
         <Input
@@ -77,7 +75,6 @@ export const Production: React.FC = () => {
           }}
         />
       </TextBox>
-
-    </Container>
-  )
+    </Container>)
+  );
 }
