@@ -1,10 +1,4 @@
-import 'antd/lib/select/style/index.css'
-import 'antd/lib/slider/style/index.css'
-import 'antd/lib/input/style/index.css'
-
-import Input from 'antd/lib/input'
-import Select from 'antd/lib/select'
-import Slider from 'antd/lib/slider'
+import { Input, Select, Slider } from 'antd'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 

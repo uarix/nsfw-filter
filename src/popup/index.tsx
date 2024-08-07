@@ -3,8 +3,6 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-import 'antd/lib/style/index.css'
-
 import { Popup } from './components'
 import { createChromeStore } from './redux/chrome-storage'
 import { rootReducer } from './redux/reducers'
