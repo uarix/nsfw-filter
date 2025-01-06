@@ -42,6 +42,12 @@ jobs:
       - name: Build  
         run: npm run build  
 
+      - name: Upload build artifacts  
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: dist  
+          path: dist/  
+
   unit-tests:  
     name: Unit Tests  
     needs: lint-and-build  
@@ -71,12 +77,18 @@ jobs:
     steps:  
       - uses: actions/checkout@v3  
 
+      - name: Download build artifacts  
+        uses: actions/download-artifact@v3  
+        with:  
+          name: dist  
+          path: dist/  
+
       - name: Use Node.js 16  
         uses: actions/setup-node@v4  
         with:  
           node-version: 16  
 
-      - name: Install Chrome  
+      - name: Setup Chrome  
         uses: browser-actions/setup-chrome@latest  
         with:  
           chrome-version: stable  
@@ -86,8 +98,35 @@ jobs:
         env:  
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'  
 
+      - name: Get Chrome path  
+        id: chrome  
+        run: |  
+          CHROME_PATH=$(which google-chrome)  
+          echo "CHROME_PATH=$CHROME_PATH" >> $GITHUB_ENV  
+          echo "Found Chrome at: $CHROME_PATH"  
+
+      - name: Display environment info  
+        run: |  
+          google-chrome --version  
+          echo "Chrome path: $CHROME_PATH"  
+          echo "Node version: $(node --version)"  
+          echo "NPM version: $(npm --version)"  
+
       - name: Run E2E tests  
-        run: npm run test:e2e  
         env:  
-          HEADLESS: 'false'  
-          PUPPETEER_EXECUTABLE_PATH: $(which chrome)
+          CI: 'true'  
+          HEADLESS: 'true' 
+          CHROME_PATH: ${{ env.CHROME_PATH }}  
+          DEBUG: 'puppeteer:*'
+        run: |  
+          echo "Starting E2E tests with Chrome at: $CHROME_PATH"  
+          npm run test:e2e  
+
+      - name: Upload test artifacts  
+        if: failure()  
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: test-artifacts  
+          path: |  
+            test-results/  
+            logs/  
