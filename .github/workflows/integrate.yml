@@ -1,34 +1,93 @@
-name: Build 👉 Test
+name: Build 👉 Test  
 
-on:
+on:  
   push:  
-    branches: [ "master" ] 
-  pull_request:
-    branches: [ "master" ]
+    branches: [ "master" ]  
+  pull_request:  
+    branches: [ "master" ]  
   workflow_dispatch:  
 
-jobs:
-  test:
-    name: Run unit and e2e tests
-    runs-on: ubuntu-latest
-    env:
-      CI: 'true'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: npm ci
-        env:
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
-      - name: Run lint checks
-        run: npm run lint
-      - name: Build
-        run: npm run build
-      - name: Run headful Puppeteer tests
-        uses: mujo-code/puppeteer-headful@18.9.0
-        with:
-          args: npm test
+jobs:  
+  lint-and-build:  
+    name: Lint and Build  
+    runs-on: ubuntu-latest  
+    strategy:  
+      matrix:  
+        node-version: [16]  
+
+    steps:  
+      - uses: actions/checkout@v3  
+
+      - name: Cache Node.js modules  
+        uses: actions/cache@v3  
+        with:  
+          path: ~/.npm  
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}  
+          restore-keys: |  
+            ${{ runner.os }}-node-${{ matrix.node-version }}-  
+
+      - name: Use Node.js ${{ matrix.node-version }}  
+        uses: actions/setup-node@v4  
+        with:  
+          node-version: ${{ matrix.node-version }}  
+
+      - name: Install dependencies  
+        run: npm ci  
+        env:  
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'  
+
+      - name: Run eslint checks  
+        run: npm run lint  
+
+      - name: Build  
+        run: npm run build  
+
+  unit-tests:  
+    name: Unit Tests  
+    needs: lint-and-build  
+    runs-on: ubuntu-latest  
+    
+    steps:  
+      - uses: actions/checkout@v3  
+
+      - name: Use Node.js 16  
+        uses: actions/setup-node@v4  
+        with:  
+          node-version: 16  
+
+      - name: Install dependencies  
+        run: npm ci  
+        env:  
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'  
+
+      - name: Run unit tests  
+        run: npm run test:unit  
+
+  e2e-tests:  
+    name: E2E Tests  
+    needs: lint-and-build  
+    runs-on: ubuntu-latest  
+    
+    steps:  
+      - uses: actions/checkout@v3  
+
+      - name: Use Node.js 16  
+        uses: actions/setup-node@v4  
+        with:  
+          node-version: 16  
+
+      - name: Install Chrome  
+        uses: browser-actions/setup-chrome@latest  
+        with:  
+          chrome-version: stable  
+
+      - name: Install dependencies  
+        run: npm ci  
+        env:  
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'  
+
+      - name: Run E2E tests  
+        run: npm run test:e2e  
+        env:  
+          HEADLESS: 'false'  
+          PUPPETEER_EXECUTABLE_PATH: $(which chrome)
