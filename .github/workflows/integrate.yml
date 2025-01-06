@@ -118,6 +118,8 @@ jobs:
           HEADLESS: 'true' 
           CHROME_PATH: ${{ env.CHROME_PATH }}  
           DEBUG: 'puppeteer:*'
+          PUPPETEER_TIMEOUT: '30000'  
+          NODE_OPTIONS: '--max-old-space-size=4096'  
         run: |  
           echo "Starting E2E tests with Chrome at: $CHROME_PATH"  
           xvfb-run --auto-servernum npm run test:e2e  

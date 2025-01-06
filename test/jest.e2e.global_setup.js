@@ -21,7 +21,10 @@ module.exports = async function () {
         '--no-sandbox',  
         '--disable-setuid-sandbox',
         '--disable-gpu',  
-        '--window-size=1920,1080'  
+        '--window-size=1920,1080',
+        '--disable-background-timer-throttling',  
+        '--disable-backgrounding-occluded-windows',  
+        '--disable-renderer-backgrounding'  
       ]  
     };  
 
@@ -49,6 +52,16 @@ module.exports = async function () {
     await delay(5000);  
     console.log('Extension loaded, continuing with tests...');  
 
+    process.on('exit', async () => {  
+      try {  
+        if (browser && browser.isConnected()) {  
+          await browser.close();  
+        }  
+      } catch (err) {  
+        console.warn('Warning: Error while closing browser:', err.message);  
+      }  
+    });  
+    
   } catch (error) {  
     console.error('Error during browser setup:', error);  
 
