@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@tensorflow/tfjs": "4.20.0",
-    "@types/antd": "1.0.0",
+    "@types/antd": "1.0.4",
     "@types/chrome": "0.0.122",
     "@types/jest": "29.5.12",
     "@types/react": "16.9.51",
