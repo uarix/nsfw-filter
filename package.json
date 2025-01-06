@@ -11,7 +11,9 @@
     "build": "webpack --config webpack/webpack.prod.js",
     "dev": "webpack --config webpack/webpack.dev.js",
     "dev:chrome": "npm-run-all --parallel dev start:chrome",
-    "start:chrome": "web-ext run --source-dir ./dist/ --target=chromium"
+    "start:chrome": "web-ext run --source-dir ./dist/ --target=chromium",
+    "dev:edge": "npm-run-all --parallel dev start:edge",
+    "start:edge": "web-ext run --source-dir ./dist/ --target=chromium --chromium-binary=\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\""
   },
   "author": {
     "name": "Navendu Pottekkat",
@@ -83,6 +85,7 @@
     "webpack": "5.93.0",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4",
+    "webpack-ext-reloader": "1.1.13",
     "webpack-merge": "6.0.1"
   }
 }
