@@ -76,5 +76,5 @@ export const Production: React.FC = () => {
         />
       </TextBox>
     </Container>)
-  );
+  )
 }

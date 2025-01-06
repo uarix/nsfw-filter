@@ -4,6 +4,7 @@
   "description": "Free, open source, and privacy-focused browser extension to block \"not safe for work\" content.",
   "scripts": {
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "clean": "rimraf dist/src",
     "test": "npm run test:unit && npm run test:e2e",
     "test:e2e": "cross-env HEADLESS=false jest --no-cache -c ./test/jest.e2e.config.js",
