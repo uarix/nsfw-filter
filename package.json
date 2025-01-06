@@ -9,6 +9,7 @@
     "test:e2e": "cross-env HEADLESS=false jest --no-cache -c ./test/jest.e2e.config.js",
     "test:unit": "jest --no-cache -c ./test/jest.unit.config.js",
     "build": "webpack --config webpack/webpack.prod.js",
+    "build:zip": "web-ext build --source-dir dist/ --artifacts-dir ./builds --overwrite-dest", 
     "dev": "webpack --config webpack/webpack.dev.js",
     "dev:chrome": "npm-run-all --parallel dev start:chrome",
     "start:chrome": "web-ext run --source-dir ./dist/ --target=chromium",
