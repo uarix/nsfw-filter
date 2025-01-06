@@ -11,7 +11,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 module.exports = async function () {  
   try {  
     const browserOptions = {  
-      headless: process.env.HEADLESS !== 'false',  
+      headless: process.env.HEADLESS === 'true' ? 'new' : false,
       product: 'chrome',  
       defaultViewport: null,  
       args: [  
@@ -19,7 +19,9 @@ module.exports = async function () {
         `--load-extension=${extensionPath}`,  
         '--disable-dev-shm-usage',  
         '--no-sandbox',  
-        '--disable-setuid-sandbox'  
+        '--disable-setuid-sandbox',
+        '--disable-gpu',  
+        '--window-size=1920,1080'  
       ]  
     };  
 

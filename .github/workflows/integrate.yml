@@ -120,7 +120,7 @@ jobs:
           DEBUG: 'puppeteer:*'
         run: |  
           echo "Starting E2E tests with Chrome at: $CHROME_PATH"  
-          npm run test:e2e  
+          xvfb-run --auto-servernum npm run test:e2e  
 
       - name: Upload test artifacts  
         if: failure()  
