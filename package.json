@@ -76,7 +76,7 @@
     "postcss-loader": "8.1.1",
     "puppeteer": "22.15.0",
     "purgecss-webpack-plugin": "6.0.0",
-    "resolve-url-loader": "3.1.1",
+    "resolve-url-loader": "3.1.5",
     "sass": "1.77.8",
     "sass-loader": "16.0.0",
     "style-loader": "4.0.0",
