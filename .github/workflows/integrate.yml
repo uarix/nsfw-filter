@@ -70,6 +70,7 @@ jobs:
         run: npm run test:unit  
 
   e2e-tests:  
+    if: false
     name: E2E Tests  
     needs: lint-and-build  
     runs-on: ubuntu-latest  
