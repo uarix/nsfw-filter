@@ -1,5 +1,6 @@
 # NSFW Filter
 > Given that the original author is no longer actively maintaining this plugin, this repository will operate independently.
+
 A free, open source, and privacy-focused browser extension to block "not safe for work" content.
 
 Built using TypeScript, TensorFlow.js, and [NSFWJS](https://github.com/infinitered/nsfwjs).
