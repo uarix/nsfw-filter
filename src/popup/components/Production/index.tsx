@@ -65,7 +65,7 @@ export const Production: React.FC = () => {
       <div>Whitelisted websites</div>
       <TextBox>
         <Input
-          placeholder="www.twitter.com, www.facebook.com"
+          placeholder="www.x.com, www.facebook.com"
           defaultValue={websites.join(', ')}
           onChange={event => {
             // Handle the change event and update the whitelist

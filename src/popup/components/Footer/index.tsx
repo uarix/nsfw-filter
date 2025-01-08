@@ -35,13 +35,13 @@ export const Footer: React.FC = () => {
 
       <BugReport>
         <BugOutlined />
-        <span><a rel="noreferrer" target="_blank" href="https://github.com/nsfw-filter/nsfw-filter/issues">Report a bug</a></span>
+        <span><a rel="noreferrer noopener" target="_blank" href="https://github.com/uarix/nsfw-filter/issues">Report a bug</a></span>
         <BugOutlined />
       </BugReport>
 
       <Sponsor>
         <DollarOutlined />
-        <span><a rel="noreferrer" target="_blank" href="https://www.patreon.com/nsfwfilter">Sponsor on Patreon</a></span>
+        <span><a rel="noreferrer noopener" target="_blank" href="https://www.patreon.com/nsfwfilter">Sponsor on Patreon</a></span>
         <DollarOutlined />
       </Sponsor>
 
