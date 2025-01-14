@@ -81,7 +81,7 @@
     "sass-loader": "16.0.4",
     "style-loader": "4.0.0",
     "ts-jest": "29.2.5",
-    "ts-loader": "9.5.1",
+    "ts-loader": "9.5.2",
     "typescript": "5.5.4",
     "web-ext": "8.3.0",
     "webpack": "5.97.1",
