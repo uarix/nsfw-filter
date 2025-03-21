@@ -82,7 +82,7 @@
     "style-loader": "4.0.0",
     "ts-jest": "29.2.5",
     "ts-loader": "9.5.2",
-    "typescript": "5.5.4",
+    "typescript": "5.8.2",
     "web-ext": "8.3.0",
     "webpack": "5.97.1",
     "webpack-bundle-analyzer": "4.10.2",
