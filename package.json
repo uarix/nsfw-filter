@@ -41,7 +41,7 @@
     "react-dom": "16.14.0",
     "react-redux": "7.2.1",
     "redux": "4.2.1",
-    "reduxed-chrome-storage": "2.0.0",
+    "reduxed-chrome-storage": "2.7.0",
     "styled-components": "5.3.11"
   },
   "devDependencies": {
